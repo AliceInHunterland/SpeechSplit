@@ -48,7 +48,7 @@ for subdir in sorted(subdirList):
     for fileName in sorted(fileList):
         # read audio file
         x, fs = sf.read(os.path.join(dirName,subdir,fileName))
-        assert fs == 16000
+       # assert fs == 16000
         if x.shape[0] % 256 == 0:
             x = np.concatenate((x, np.array([1e-06])), axis=0)
         y = signal.filtfilt(b, a, x)
