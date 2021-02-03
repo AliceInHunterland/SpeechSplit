@@ -44,7 +44,7 @@ for subdir in sorted(subdirList):
     #else:
     #    raise ValueError
         
-    prng = RandomState(int(subdir[1:])) 
+    prng = RandomState(int(subdir[:2])) 
     for fileName in sorted(fileList):
         # read audio file
         x, fs = sf.read(os.path.join(dirName,subdir,fileName))
