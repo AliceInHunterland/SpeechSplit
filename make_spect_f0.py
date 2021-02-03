@@ -39,7 +39,7 @@ for subdir in sorted(subdirList):
     
     if subdir[-1] == 'M':
         lo, hi = 50, 250
-    elif:
+    else:
         lo, hi = 100, 600
     #else:
     #    raise ValueError
