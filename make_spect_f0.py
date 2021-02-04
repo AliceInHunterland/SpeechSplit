@@ -10,6 +10,7 @@ from pysptk import sptk
 from utils import butter_highpass
 from utils import speaker_normalization
 from utils import pySTFT
+import librosa  
     
 
 mel_basis = mel(16000, 1024, fmin=90, fmax=7600, n_mels=80).T
@@ -47,7 +48,13 @@ for subdir in sorted(subdirList):
     prng = RandomState(int(subdir[:2])) 
     for fileName in sorted(fileList):
         # read audio file
-        x, fs = sf.read(os.path.join(dirName,subdir,fileName))
+        #x, fs = sf.read(os.path.join(dirName,subdir,fileName))
+        x, fs = librosa.load(os.path.join(dirName,subdir,fileName),sr=16000)
+        print(len(x))
+        print(x)
+        print(fs)
+        if len(x)==2:
+            x = x.sum(axis=1) / 2
        # assert fs == 16000
         if x.shape[0] % 256 == 0:
             x = np.concatenate((x, np.array([1e-06])), axis=0)
